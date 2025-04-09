@@ -9,6 +9,7 @@ use App\Http\Controllers\StudentController;
 use App\Http\Controllers\KnowledgeController;
 use App\Http\Controllers\GroupController;
 use App\Http\Controllers\TeacherController;
+use APP\Http\Controllers\AdminController; // Add of class AdminController
 use Illuminate\Support\Facades\Route;
 
 // Redirect the root path to /dashboard
@@ -45,6 +46,9 @@ Route::middleware('auth')->group(function () {
 
         // Common life
         Route::get('common-life', [CommonLifeController::class, 'index'])->name('common-life.index');
+
+        // Admin
+        Route::get('admin/dashboard', [AdminController::class, 'index'])->name('admin.index');
     });
 
 });
