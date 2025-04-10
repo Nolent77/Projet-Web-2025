@@ -7,33 +7,49 @@
         </h1>
     </x-slot>
 
-    <!-- begin: grid -->
-    <div class="grid lg:grid-cols-3 gap-5 lg:gap-7.5 items-stretch">
-        <div class="lg:col-span-2">
-            <div class="grid">
-                <div class="card card-grid h-full min-w-full">
-                    <div class="card-header">
-                        <h3 class="card-title">
-                            Block 1
-                        </h3>
-                    </div>
-                    <div class="card-body flex flex-col gap-5">
+    <div class="shadow-lg border rounded-md p-4">
+    <!-- Titre de la page -->
+    <h1 class="text-2xl font-semibold text-gray-800 mb-6">Dashboard</h1>
 
-                    </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6" >
+
+                <!-- Promotions -->
+                <div class="bg-white p-6 rounded-lg shadow-md flex flex-col items-center">
+                    <h2 class="text-lg font-medium text-gray-700 mt-12">Promotions</h2>
+                    <p class="text-3xl font-bold text-blue-500">12</p>
+                    <a href="/promotions" class="text-blue-600 hover:bg-blue-100 border border-black px-4 py-2 rounded-md mt-2">
+                        Gérer
+                    </a>
+                </div>
+
+                <!-- Étudiants -->
+                <div class="bg-white p-6 rounded-lg shadow-md flex flex-col items-center">
+                    <h2 class="text-lg font-medium text-gray-700">Étudiants</h2>
+                    <p class="text-3xl font-bold text-green-500">240</p>
+                    <a href="/etudiants" class="text-blue-600 hover:bg-blue-100 border border-black px-4 py-2 rounded-md mt-2">
+                        Gérer
+                    </a>
+                </div>
+
+                <!-- Enseignants -->
+                <div class="bg-white p-6 rounded-lg shadow-md flex flex-col items-center">
+                    <h2 class="text-lg font-medium text-gray-700">Enseignants</h2>
+                    <p class="text-3xl font-bold text-yellow-500">18</p>
+                    <a href="/enseignants" class="text-blue-600 hover:bg-blue-100 border border-black px-4 py-2 rounded-md mt-2">
+                        Gérer
+                    </a>
+                </div>
+
+                <!-- Groupes -->
+                <div class="bg-white p-6 rounded-lg shadow-md flex flex-col items-center">
+                    <h2 class="text-lg font-medium text-gray-700">Groupes</h2>
+                    <p class="text-3xl font-bold text-red-500">30</p>
+                    <a href="/groupes" class="text-blue-600 hover:bg-blue-100 border border-black px-4 py-2 rounded-md mt-2">
+                        Gérer
+                    </a>
                 </div>
             </div>
-        </div>
-        <div class="lg:col-span-1">
-            <div class="card card-grid h-full min-w-full">
-                <div class="card-header">
-                    <h3 class="card-title">
-                        Block 2
-                    </h3>
-                </div>
-                <div class="card-body flex flex-col gap-5">
-                </div>
-            </div>
-        </div>
     </div>
-    <!-- end: grid -->
+    </div>
+
 </x-app-layout>
