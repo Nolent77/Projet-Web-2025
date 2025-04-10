@@ -9,7 +9,7 @@ use App\Http\Controllers\StudentController;
 use App\Http\Controllers\KnowledgeController;
 use App\Http\Controllers\GroupController;
 use App\Http\Controllers\TeacherController;
-use APP\Http\Controllers\AdminController; // Add of class AdminController
+use App\Http\Controllers\AdminController; // Add of class AdminController
 use Illuminate\Support\Facades\Route;
 
 // Redirect the root path to /dashboard

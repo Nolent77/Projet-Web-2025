@@ -75,7 +75,8 @@ class User extends Authenticatable
     /**
      * @return (Model&object)|null
      */
-    public function school() {
+    public function school()
+    {
         // With this, the user can only have 1 school
         return $this->belongsToMany(School::class, 'users_schools')
             ->withPivot('role')
