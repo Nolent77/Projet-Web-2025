@@ -26,7 +26,7 @@
             <!-- Étudiants -->
             <div class="bg-white p-6 rounded-lg shadow-md flex flex-col items-center">
                 <h2 class="text-lg font-medium text-gray-700">Étudiants</h2>
-                <p class="text-3xl font-bold text-green-500">240</p>
+                <p class="text-3xl font-bold text-green-500">{{$students->count()}}</p>
                 <a href="/etudiants" class="text-blue-600 hover:bg-blue-100 border border-black px-4 py-2 rounded-md mt-2">
                     Gérer
                 </a>
@@ -35,7 +35,7 @@
             <!-- Enseignants -->
             <div class="bg-white p-6 rounded-lg shadow-md flex flex-col items-center">
                 <h2 class="text-lg font-medium text-gray-700">Enseignants</h2>
-                <p class="text-3xl font-bold text-yellow-500">18</p>
+                <p class="text-3xl font-bold text-yellow-500">{{$teachers->count()}}</p>
                 <a href="/enseignants" class="text-blue-600 hover:bg-blue-100 border border-black px-4 py-2 rounded-md mt-2">
                     Gérer
                 </a>
@@ -44,7 +44,7 @@
             <!-- Groupes -->
             <div class="bg-white p-6 rounded-lg shadow-md flex flex-col items-center">
                 <h2 class="text-lg font-medium text-gray-700">Groupes</h2>
-                <p class="text-3xl font-bold text-red-500">30</p>
+                <p class="text-3xl font-bold text-red-500">{{$schools->count()}}</p>
                 <a href="/groupes" class="text-blue-600 hover:bg-blue-100 border border-black px-4 py-2 rounded-md mt-2">
                     Gérer
                 </a>
