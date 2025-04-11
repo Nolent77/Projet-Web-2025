@@ -45,7 +45,7 @@
             <div class="bg-white p-6 rounded-lg shadow-md flex flex-col items-center">
                 <h2 class="text-lg font-medium text-gray-700">Groupes</h2>
                 <p class="text-3xl font-bold text-red-500">1</p>
-                <a href="/groups" class="text-blue-600 hover:bg-blue-100 border border-black px-4 py-2 rounded-md mt-2">
+                <a href="/groups    " class="text-blue-600 hover:bg-blue-100 border border-black px-4 py-2 rounded-md mt-2">
                     Gérer
                 </a>
             </div>
