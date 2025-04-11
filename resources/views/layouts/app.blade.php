@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html class="h-full" data-theme="true" data-theme-mode="light" dir="ltr" lang="fr">
 <head>
+
     <title>Coding Tool Box</title>
     <meta charset="utf-8"/>
     <meta content="follow, index" name="robots"/>
@@ -18,6 +19,7 @@
                 bg-[--tw-page-bg] dark:bg-[--tw-page-bg-dark] lg:overflow-hidden">
 <!-- Theme Mode -->
 <script>
+
     const defaultThemeMode = 'light'; // light|dark|system
     let themeMode;
     if ( document.documentElement ) {
@@ -32,7 +34,7 @@
     }
 </script>
 <!-- End of Theme Mode -->
-
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 <!-- Page -->
 <!-- Base -->
 <div class="flex grow">
