@@ -82,4 +82,12 @@ class User extends Authenticatable
             ->withPivot('role')
             ->first();
     }
+
+
+    public static function getUsersByRole($role){
+        return self::join('users_schools', 'users.id' ,'=','users_schools.user_id' )
+        ->where('users_schools.role', '=', $role)
+        ->select('users.*','users_schools.role')
+        ->get();
+    }
 }
