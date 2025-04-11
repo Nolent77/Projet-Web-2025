@@ -13,10 +13,9 @@ class DashboardController extends Controller
     public function index()
     {
         $userRole = auth()->user()->school()->pivot->role;
-        $cohorts = Cohort::all();
+        $cohorts = School::getSchool();
         $students = User::getUsersByRole('student');
         $teachers = User::getUsersByRole('teacher');
-        $schools = School::all();
-        return view('pages.dashboard.dashboard-' . $userRole, compact('cohorts', 'students', 'teachers','schools' ));
+        return view('pages.dashboard.dashboard-' . $userRole, compact('cohorts', 'students', 'teachers'));
     }
 }
