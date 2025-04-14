@@ -20,16 +20,19 @@
                             <thead class="bg-gray-100">
                             <tr>
                                 <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Nom</th>
-                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Année</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Année de Début</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Année de Fin</th>
                                 <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Description</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Modifier</th>
                                 <th class="px-6 py-3"></th>
                             </tr>
                             </thead>
                             <tbody class="bg-white divide-y divide-gray-200">
                             @foreach( $cohorts as  $cohort)
                                 <tr>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{{  $cohort->nom }}</td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{{  $cohort->annee }}</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{{  $cohort->name }}</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{{  $cohort->start_date }}</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{{  $cohort->end_date }}</td>
                                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{{  $cohort->description ?? '-' }}</td>
                                     <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                                         <a href="{{ route('cohort.show',  $cohort->id) }}" class="text-indigo-600 hover:text-indigo-900">Voir</a>
