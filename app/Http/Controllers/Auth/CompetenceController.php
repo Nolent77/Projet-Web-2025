@@ -8,14 +8,16 @@ use App\Models\School;
 use App\Models\UserSchool;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
 
 class CompetenceController extends Controller
 {
-    public function getCompetence()
+    public function index()
     {
-        $competence =
-        $userRole = auth()->user()->school()->pivot->role;
-        $teachers = User::getUsersByRole('teacher');
-        return view('pages.dashboard.dashboard-' . $userRole, compact('cohorts', 'students', 'teachers'));
+        //$enseignant = Auth::user();
+        //$promotions = $enseignant->cohorts; // relation many-to-many
+
+        return view('pages.groups.index');
     }
 }
