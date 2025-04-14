@@ -32,7 +32,7 @@
                                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{{  $cohort->annee }}</td>
                                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{{  $cohort->description ?? '-' }}</td>
                                     <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                        <a href="{{ route('promotions.show',  $cohort->id) }}" class="text-indigo-600 hover:text-indigo-900">Voir</a>
+                                        <a href="{{ route('cohort.show',  $cohort->id) }}" class="text-indigo-600 hover:text-indigo-900">Voir</a>
                                     </td>
                                 </tr>
                             @endforeach
