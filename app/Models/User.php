@@ -90,4 +90,9 @@ class User extends Authenticatable
         ->select('users.*','users_schools.role')
         ->get();
     }
+
+    public function cohorts(){
+        return $this->belongsToMany(Cohort::class, 'users_cohorts')
+            ->withTimestamps();
+    }
 }

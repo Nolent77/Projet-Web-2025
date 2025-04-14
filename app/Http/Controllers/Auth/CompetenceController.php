@@ -13,11 +13,5 @@ use Illuminate\Support\Facades\Auth;
 
 class CompetenceController extends Controller
 {
-    public function index()
-    {
-        //$enseignant = Auth::user();
-        //$promotions = $enseignant->cohorts; // relation many-to-many
 
-        return view('pages.groups.index');
-    }
 }
