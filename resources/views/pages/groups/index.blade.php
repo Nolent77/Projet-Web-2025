@@ -12,7 +12,7 @@
             <div class="bg-white shadow-md rounded-lg p-6">
                 <h2 class="text-xl font-semibold text-gray-800 mb-4">Mes promotions</h2>
 
-                @if($promotions->isEmpty())
+                @if( $cohorts->isEmpty())
                     <p class="text-gray-600">Aucune promotion ne vous est actuellement assignée.</p>
                 @else
                     <div class="overflow-x-auto">
@@ -26,13 +26,13 @@
                             </tr>
                             </thead>
                             <tbody class="bg-white divide-y divide-gray-200">
-                            @foreach($promotions as $promotion)
+                            @foreach( $cohorts as  $cohort)
                                 <tr>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{{ $promotion->nom }}</td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{{ $promotion->annee }}</td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{{ $promotion->description ?? '-' }}</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{{  $cohort->nom }}</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{{  $cohort->annee }}</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{{  $cohort->description ?? '-' }}</td>
                                     <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                        <a href="{{ route('promotions.show', $promotion->id) }}" class="text-indigo-600 hover:text-indigo-900">Voir</a>
+                                        <a href="{{ route('promotions.show',  $cohort->id) }}" class="text-indigo-600 hover:text-indigo-900">Voir</a>
                                     </td>
                                 </tr>
                             @endforeach

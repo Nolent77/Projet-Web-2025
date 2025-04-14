@@ -38,8 +38,8 @@ Route::middleware('auth')->group(function () {
         // Knowledge
         Route::get('knowledge', [KnowledgeController::class, 'index'])->name('knowledge.index');
 
-        // Groups
-        Route::get('groups', [GroupController::class, 'index'])->name('group.index');
+        // Groups //Modification of Controller | GroupController --> CohortController
+        Route::get('groups', [CohortController::class, 'index'])->name('group.index');
 
         // Retro
         route::get('retros', [RetroController::class, 'index'])->name('retro.index');

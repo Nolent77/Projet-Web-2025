@@ -83,7 +83,6 @@ class User extends Authenticatable
             ->first();
     }
 
-
     public static function getUsersByRole($role){
         return self::join('users_schools', 'users.id' ,'=','users_schools.user_id' )
         ->where('users_schools.role', '=', $role)
@@ -92,7 +91,7 @@ class User extends Authenticatable
     }
 
     public function cohorts(){
-        return $this->belongsToMany(Cohort::class, 'users_cohorts')
+        return $this->belongsToMany(Cohort::class, 'cohort_user')
             ->withTimestamps();
     }
 }
