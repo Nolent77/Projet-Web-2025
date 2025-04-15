@@ -52,7 +52,7 @@ Route::middleware('auth')->group(function () {
 
         // Create Student
         Route::get('/student/create',[StudentController::class, 'create_student'])->name ('api.students.create');
-        Route::post('/student',[StudentController::class, 'show_student'])->name ('api.students.show'); // To save the new student
+        Route::post('/student',[StudentController::class, 'store_student'])->name ('api.students.show'); // To save the new student
         Route::get('/student/{id}/edit', [StudentController::class, 'edit_student'])->name('api.students.edit'); // Route GET to print the form
 
         // Update Student
