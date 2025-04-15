@@ -6,96 +6,42 @@
             </span>
         </h1>
     </x-slot>
+    <div class="py-6">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="bg-white shadow-md rounded-lg p-6">
+                <h2 class="text-xl font-semibold text-gray-800 mb-4">Mes promotions</h2>
 
-    <!-- begin: grid -->
-    <div class="grid lg:grid-cols-3 gap-5 lg:gap-7.5 items-stretch">
-        <div class="lg:col-span-2">
-            <div class="grid">
-                <div class="card card-grid h-full min-w-full">
-                    <div class="card-header">
-                        <h3 class="card-title">Mes promotions</h3>
+                @if( $cohorts->isEmpty())
+                    <p class="text-gray-600">Aucune promotion ne vous est actuellement assignée.</p>
+                @else
+                    <div class="overflow-x-auto">
+                        <table class="min-w-full divide-y divide-gray-200">
+                            <thead class="bg-gray-100">
+                            <tr>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Nom</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Année de Début</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Année de Fin</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Description</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Modifier</th>
+                                <th class="px-6 py-3"></th>
+                            </tr>
+                            </thead>
+                            <tbody class="bg-white divide-y divide-gray-200">
+                            @foreach( $cohorts as  $cohort)
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{{  $cohort->name }}</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{{  $cohort->start_date }}</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{{  $cohort->end_date }}</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{{  $cohort->description ?? '-' }}</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                        <a href="{{ route('cohort.show',  $cohort->id) }}" class="text-indigo-600 hover:text-indigo-900">Voir</a>
+                                    </td>
+                                </tr>
+                            @endforeach
+                            </tbody>
+                        </table>
                     </div>
-                    <div class="card-body">
-                        <div data-datatable="true" data-datatable-page-size="5">
-                            <div class="scrollable-x-auto">
-                                <table class="table table-border" data-datatable-table="true">
-                                    <thead>
-                                    <tr>
-                                        <th class="min-w-[280px]">
-                                            <span class="sort asc">
-                                                 <span class="sort-label">Promotion</span>
-                                                 <span class="sort-icon"></span>
-                                            </span>
-                                        </th>
-                                        <th class="min-w-[135px]">
-                                            <span class="sort">
-                                                <span class="sort-label">Année</span>
-                                                <span class="sort-icon"></span>
-                                            </span>
-                                        </th>
-                                        <th class="min-w-[135px]">
-                                            <span class="sort">
-                                                <span class="sort-label">Etudiants</span>
-                                                <span class="sort-icon"></span>
-                                            </span>
-                                        </th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                        <td>
-                                            <div class="flex flex-col gap-2">
-                                                <a class="leading-none font-medium text-sm text-gray-900 hover:text-primary"
-                                                   href="{{ route('cohort.show', 1) }}">
-                                                    Promotion B1
-                                                </a>
-                                                <span class="text-2sm text-gray-700 font-normal leading-3">
-                                                    Cergy
-                                                </span>
-                                            </div>
-                                        </td>
-                                        <td>2024-2025</td>
-                                        <td>34</td>
-                                    </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                            <div class="card-footer justify-center md:justify-between flex-col md:flex-row gap-5 text-gray-600 text-2sm font-medium">
-                                <div class="flex items-center gap-2 order-2 md:order-1">
-                                    Show
-                                    <select class="select select-sm w-16" data-datatable-size="true" name="perpage"></select>
-                                    per page
-                                </div>
-                                <div class="flex items-center gap-4 order-1 md:order-2">
-                                    <span data-datatable-info="true"></span>
-                                    <div class="pagination" data-datatable-pagination="true"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="lg:col-span-1">
-            <div class="card h-full">
-                <div class="card-header">
-                    <h3 class="card-title">
-                        Ajouter une promotion
-                    </h3>
-                </div>
-                <div class="card-body flex flex-col gap-5">
-                    <x-forms.input name="name" :label="__('Nom')" />
-
-                    <x-forms.input name="description" :label="__('Description')" />
-
-                    <x-forms.input type="date" name="year" :label="__('Début de l\'année')" placeholder="" />
-
-                    <x-forms.input type="date" name="year" :label="__('Fin de l\'année')" placeholder="" />
-
-                    <x-forms.primary-button>
-                        {{ __('Valider') }}
-                    </x-forms.primary-button>
-                </div>
+                @endif
             </div>
         </div>
     </div>

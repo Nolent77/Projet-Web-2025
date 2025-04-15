@@ -25,7 +25,7 @@ class CohortController extends Controller
 
         $cohorts = $teacher->cohorts;
 
-        return view('pages.groups.index', compact('cohorts'));
+        return view('pages.cohorts.index', compact('cohorts'));
     }
 
 

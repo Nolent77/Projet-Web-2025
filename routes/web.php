@@ -39,7 +39,7 @@ Route::middleware('auth')->group(function () {
         Route::get('knowledge', [KnowledgeController::class, 'index'])->name('knowledge.index');
 
         // Groups //Modification of Controller | GroupController --> CohortController
-        Route::get('groups', [CohortController::class, 'index'])->name('group.index');
+        Route::get('groups', [GroupController::class, 'index'])->name('group.index');
 
         // Retro
         route::get('retros', [RetroController::class, 'index'])->name('retro.index');
@@ -49,6 +49,16 @@ Route::middleware('auth')->group(function () {
 
         // Admin
         Route::get('admin/dashboard', [AdminController::class, 'index'])->name('admin.index');
+
+        // Create Student
+        Route::get('/student/create',[StudentController::class, 'create_student'])->name ('api.students.create');
+        Route::post('/student/save',[StudentController::class, 'show_student'])->name ('api.students.show'); // to save the new student
+
+        // Update Student
+        Route::put('/student/{id}/update',[StudentController::class, 'update_student'])->name ('api.students.update');
+
+        // Remove Student
+        Route::delete('/student/{id}/delete',[StudentController::class, 'delete_student'])->name ('api.students.destroy');
     });
 
 });
