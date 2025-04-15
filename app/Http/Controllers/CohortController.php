@@ -24,12 +24,12 @@ class CohortController extends Controller
         }
         if ($user->hasRole('teacher')){
             $cohorts = $user->cohorts;
-            return view('cohort.index_teacher', compact('cohorts'));
+            return view('cohorts.index_teacher', compact('cohorts'));
         }
 
         if ($user->hasRole('admin')){
             $cohorts = $user->cohorts;
-            return view('cohort.index', compact('cohorts'));
+            return view('cohorts.index', compact('cohorts'));
         }
     }
 

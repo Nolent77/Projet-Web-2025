@@ -96,4 +96,8 @@ class User extends Authenticatable
         return $this->belongsToMany(Cohort::class, 'cohort_user')
             ->withTimestamps();
     }
+
+    public function hasRole($role){
+        return $this->role === $role;
+    }
 }
