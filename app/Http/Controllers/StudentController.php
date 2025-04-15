@@ -38,4 +38,30 @@ class StudentController extends Controller
             'message' => 'Étudiant créé avec succès !',
             'student' => $student]);
     }
+
+    public function edit_student($id){
+        $student = User::findOrFail($id); // Return a 404 error if the student doesn't exist
+        return view('pages.students.edit', compact('student'));
+    }
+
+    public function update_student($id){
+        $student = User::findorFail($id); // We recover the user with his id
+
+        // We recover the new information of user (indicate in the new form)
+        $student->first_name = request('first_name');
+        $student->last_name = request('last_name');
+        $student->birth_date = request('birth_date');
+        $student->email = request('email');
+
+        if(request('password')) // We hash the password only if we have a password
+        {
+            $student-> password = Hash::make(request('password'));
+        }
+
+        $student->save(); // We save the changes
+
+        return response()->json([
+            'message' => 'Étudiant modifié avec succès !',
+            'student' => $student]);
+    }
 }
