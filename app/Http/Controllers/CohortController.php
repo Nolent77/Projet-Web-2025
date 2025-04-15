@@ -17,15 +17,20 @@ class CohortController extends Controller
      */
     public function index()
     {
-        $teacher= Auth::user();
+        $user= auth()->user();
 
-        if (!$teacher){
+        if (!$user){
             abort(403, 'utilisateur non authentifié.');
         }
+        if ($user->hasRole('teacher')){
+            $cohorts = $user->cohorts;
+            return view('cohort.index_teacher', compact('cohorts'));
+        }
 
-        $cohorts = $teacher->cohorts;
-
-        return view('pages.cohorts.index', compact('cohorts'));
+        if ($user->hasRole('admin')){
+            $cohorts = $user->cohorts;
+            return view('cohort.index', compact('cohorts'));
+        }
     }
 
 
