@@ -64,4 +64,13 @@ class StudentController extends Controller
             'message' => 'Étudiant modifié avec succès !',
             'student' => $student]);
     }
+
+    public function delete_student($id){
+        $student = User::findOrFail($id);
+        $student->delete();
+
+        return response()->json([
+            'message' => "Étudiant supprimé avec succès !"
+        ]);
+    }
 }
