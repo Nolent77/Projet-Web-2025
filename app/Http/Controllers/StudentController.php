@@ -14,7 +14,8 @@ class StudentController extends Controller
 
     public function index()
     {
-        return view('pages.students.index');
+        $students = User::all();
+        return view('pages.students.index', compact('students'));
     }
 
     public function create_student(){
