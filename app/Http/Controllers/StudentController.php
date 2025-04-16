@@ -14,7 +14,9 @@ class StudentController extends Controller
 
     public function index()
     {
-        $students = User::all();
+        $students = User::whereHas('userSchool', function ($query) {
+            $query->where('role', 'student');
+        })->get();
         return view('pages.students.index', compact('students'));
     }
 
