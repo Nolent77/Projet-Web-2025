@@ -50,16 +50,14 @@ Route::middleware('auth')->group(function () {
         // Admin
         Route::get('admin/dashboard', [AdminController::class, 'index'])->name('admin.index');
 
-        // Create Student
-        Route::get('/student/create',[StudentController::class, 'create_student'])->name ('api.students.create');
-        Route::post('/student',[StudentController::class, 'store_student'])->name ('api.students.show'); // To save the new student
-        Route::get('/student/{id}/edit', [StudentController::class, 'edit_student'])->name('api.students.edit'); // Route GET to print the form
+        // Étudiants (CRUD complet, routes classiques Laravel)
+        Route::get('/students', [StudentController::class, 'index'])->name('student.index');
+        Route::get('/students/create', [StudentController::class, 'create'])->name('students.create');
+        Route::post('/students', [StudentController::class, 'store'])->name('students.store');
+        Route::get('/students/{id}/edit', [StudentController::class, 'edit'])->name('students.edit');
+        Route::put('/students/{id}', [StudentController::class, 'update'])->name('students.update');
+        Route::delete('/students/{id}', [StudentController::class, 'destroy'])->name('students.destroy');
 
-        // Update Student
-        Route::put('/student/{id}/update',[StudentController::class, 'update_student'])->name ('api.students.update');
-
-        // Remove Student
-        Route::delete('/student/{id}/delete',[StudentController::class, 'delete_student'])->name ('api.students.destroy');
     });
 
 });

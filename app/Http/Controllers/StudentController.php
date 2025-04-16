@@ -8,72 +8,94 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash; // Import the class to hash the password
 use function Laravel\Prompts\password;
 use App\Models\User;
+use Illuminate\Support\Facades\DB;
 
 class StudentController extends Controller
 {
 
     public function index()
     {
-        $students = User::whereHas('userSchool', function ($query) {
-            $query->where('role', 'student');
-        })->get();
+        $students = DB::table('users')
+            ->join('users_schools', 'users.id', '=', 'users_schools.user_id')
+            ->where('users_schools.role', 'student')
+            ->select('users.*')
+            ->get();
+
         return view('pages.students.index', compact('students'));
     }
 
-    public function create_student(){
+    // Create Student
+
+    public function create(){
 
     return view('pages.students.create');
     }
 
+    // Store Student
 
-    public function store_student(){
-
-        $student = User::create([
-            'first_name' => request('first_name'),
-            'last_name' => request('last_name'),
-            'birth_day' => request('birth_day'),
-            'email' => request('email'),
-            'password' => Hash::make(request('password')),
-
+    public function store(Request $request)
+    {
+        $request->validate([
+            'first_name' => 'required|string',
+            'last_name' => 'required|string',
+            'email' => 'required|email|unique:users',
+            'birth_date' => 'required|date',
+            'password' => 'required|min:6'
         ]);
 
-        return response()->json([
-            'message' => 'Étudiant créé avec succès !',
-            'student' => $student]);
+        $userId = DB::table('users')->insertGetId([
+            'first_name' => $request->first_name,
+            'last_name' => $request->last_name,
+            'email' => $request->email,
+            'birth_date' => $request->birth_date,
+            'password' => bcrypt($request->password),
+            'created_at' => now(),
+            'updated_at' => now()
+        ]);
+
+        DB::table('users_schools')->insert([
+            'user_id' => $userId,
+            'school_id' => 1, // à adapter
+            'role' => 'student',
+            'created_at' => now(),
+            'updated_at' => now()
+        ]);
+
+        return redirect()->route('students.index')->with('success', 'Étudiant ajouté avec succès');
     }
 
-    public function edit_student($id){
+    // Edit Student
+
+    public function edit($id){
         $student = User::findOrFail($id); // Return a 404 error if the student doesn't exist
         return view('pages.students.edit', compact('student'));
     }
 
-    public function update_student($id){
-        $student = User::findorFail($id); // We recover the user with his id
 
-        // We recover the new information of user (indicate in the new form)
-        $student->first_name = request('first_name');
-        $student->last_name = request('last_name');
-        $student->birth_date = request('birth_date');
-        $student->email = request('email');
+    // Update Student
 
-        if(request('password')) // We hash the password only if we have a password
-        {
-            $student-> password = Hash::make(request('password'));
-        }
+    public function update(Request $request, $id)
+    {
+        $validated = $request->validate([
+            'last_name' => 'required|string|max:255',
+            'first_name' => 'required|string|max:255',
+            'birth_date' => 'required|string|max:255',
+            'email' => 'required|email|max:255',
+        ]);
 
-        $student->save(); // We save the changes
+        $user = User::findOrFail($id);
+        $user->update($validated);
 
-        return response()->json([
-            'message' => 'Étudiant modifié avec succès !',
-            'student' => $student]);
+        return redirect()->back()->with('success', 'Étudiant mis à jour');
     }
 
-    public function delete_student($id){
-        $student = User::findOrFail($id);
-        $student->delete();
+    // Delete Student
 
-        return response()->json([
-            'message' => "Étudiant supprimé avec succès !"
-        ]);
+    public function destroy($id)
+    {
+        DB::table('users')->where('id', $id)->delete();
+        DB::table('users_schools')->where('user_id', $id)->delete();
+
+        return redirect()->route('students.index')->with('success', 'Étudiant supprimé');
     }
 }
