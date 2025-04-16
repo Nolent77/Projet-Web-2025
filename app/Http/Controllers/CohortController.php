@@ -22,15 +22,18 @@ class CohortController extends Controller
         if (!$user){
             abort(403, 'utilisateur non authentifié.');
         }
+
         if ($user->hasRole('teacher')){
             $cohorts = $user->cohorts;
-            return view('cohorts.index_teacher', compact('cohorts'));
+            return view('pages.cohorts.index_teacher', compact('cohorts'));
         }
 
         if ($user->hasRole('admin')){
             $cohorts = $user->cohorts;
-            return view('cohorts.index', compact('cohorts'));
+            return view('pages.cohorts.index', compact('cohorts'));
         }
+
+        abort(403, 'utilisateur non authentifié.');
     }
 
 

@@ -97,7 +97,11 @@ class User extends Authenticatable
             ->withTimestamps();
     }
 
+    public function userSchool(){
+        return $this->hasOne(UserSchool::class); // Relation towards UserSchool
+    }
+
     public function hasRole($role){
-        return $this->role === $role;
+        return $this->userSchool && $this->userSchool->role === $role;// Search the relation userSchool and compare the role with what he got
     }
 }

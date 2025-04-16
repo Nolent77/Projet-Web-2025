@@ -98,9 +98,31 @@
                         Ajouter un Enseignant
                     </h3>
                 </div>
-                <div class="card-body flex flex-col gap-5">
-                    Formulaire à créer
-                    <!-- @todo A compléter -->
+                <div class="lg:col-span-1">
+                    <div class="card h-full">
+                        <div class="card-header">
+                            <h3 class="card-title">
+                                Ajouter une promotion
+                            </h3>
+                        </div>
+                        <div class="card-body flex flex-col gap-5">
+                            <x-forms.input name="name" :label="__('Nom')" />
+
+
+                            <x-forms.input name="description" :label="__('Description')" />
+
+
+                            <x-forms.input type="date" name="year" :label="__('Début de l\'année')" placeholder="" />
+
+
+                            <x-forms.input type="date" name="year" :label="__('Fin de l\'année')" placeholder="" />
+
+
+                            <x-forms.primary-button>
+                                {{ __('Valider') }}
+                            </x-forms.primary-button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
