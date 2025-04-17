@@ -61,7 +61,7 @@
                                                     </a>
 
                                                     <!-- Bouton Supprimer -->
-                                                    <form action="{{ route('students.destroy', $student->id) }}" method="POST" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer cet étudiant ?')">
+                                                    <form action="{{ route('students.delete', $student->id) }}" method="POST" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer cet étudiant ?')">
                                                         @csrf
                                                         @method('DELETE')
                                                         <button type="submit" class="text-red-600 hover:text-red-800" title="Supprimer">

@@ -91,11 +91,11 @@ class StudentController extends Controller
 
     // Delete Student
 
-    public function destroy($id)
+    public function delete($id)
     {
         DB::table('users')->where('id', $id)->delete();
         DB::table('users_schools')->where('user_id', $id)->delete();
 
-        return redirect()->route('students.index')->with('success', 'Étudiant supprimé');
+        return redirect()->route('student.index')->with('success', 'Étudiant supprimé');
     }
 }
