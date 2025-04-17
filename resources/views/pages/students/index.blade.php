@@ -56,8 +56,9 @@
                                             <td>
                                                 <div class="flex items-center gap-3 justify-center">
                                                     <!-- Bouton Modifier -->
-                                                    <a href="{{ route('students.edit', $student->id) }}" class="text-blue-600 hover:text-blue-800" title="Modifier">
-                                                        <i class="ki-filled ki-pencil-square"></i>
+                                                    <a class="open-student-modal hover:text-primary cursor-pointer" href="#"
+                                                       data-modal-toggle="#student-modal" data-route="{{ route('students.update', $student->id) }}">
+                                                        <i class="ki-filled ki-cursor"></i>
                                                     </a>
 
                                                     <!-- Bouton Supprimer -->

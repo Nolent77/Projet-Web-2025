@@ -50,12 +50,12 @@ Route::middleware('auth')->group(function () {
         // Admin
         Route::get('admin/dashboard', [AdminController::class, 'index'])->name('admin.index');
 
-        // Étudiants (CRUD complet, routes classiques Laravel)
         Route::get('/students', [StudentController::class, 'index'])->name('student.index');
         Route::get('/students/create', [StudentController::class, 'create'])->name('students.create');
         Route::post('/students', [StudentController::class, 'store'])->name('students.store');
         Route::get('/students/{id}/edit', [StudentController::class, 'edit'])->name('students.edit');
-        Route::put('/students/{id}', [StudentController::class, 'update'])->name('students.update');
+        Route::put('form/students/{students}', [StudentController::class, 'update'])->name('form.students.update'); // Route to the form
+        Route::get('/students/{students}', [StudentController::class, 'getForm'])->name('students.update'); // Route to recup the form's infos
         Route::delete('/students/{id}', [StudentController::class, 'delete'])->name('students.delete');
 
     });

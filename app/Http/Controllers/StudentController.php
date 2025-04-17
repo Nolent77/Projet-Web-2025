@@ -61,7 +61,7 @@ class StudentController extends Controller
             'updated_at' => now()
         ]);
 
-        return redirect()->route('students.index')->with('success', 'Étudiant ajouté avec succès');
+        return redirect()->route('student.index')->with('success', 'Étudiant ajouté avec succès');
     }
 
     // Edit Student
@@ -88,6 +88,27 @@ class StudentController extends Controller
 
         return redirect()->back()->with('success', 'Étudiant mis à jour');
     }
+
+    // Get form of a student
+
+    public function getForm(Request $request)
+    {
+        $validatedData = $request->validate([
+            'first_name' => 'required|string|max:255',
+            'last_name' => 'required|string|max:255',
+            'email' => 'required|email',
+            'birth_date' => 'required|date',
+            'password' => 'required|min:6',
+        ]);
+
+        // Tu peux maintenant utiliser $validatedData comme tu veux, ou juste les renvoyer
+        return response()->json([
+            'success' => true,
+            'message' => 'Formulaire reçu avec succès !',
+            'data' => $validatedData
+        ]);
+    }
+
 
     // Delete Student
 
