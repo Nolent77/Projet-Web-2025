@@ -82,7 +82,7 @@ class User extends Authenticatable
         // With this, the user can only have 1 school
         return $this->belongsToMany(School::class, 'users_schools')
             ->withPivot('role')
-            ->withTimestamps();
+            ->first();
     }
 
     public static function getUsersByRole($role){
