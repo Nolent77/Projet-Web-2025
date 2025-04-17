@@ -11,6 +11,8 @@ use App\Http\Controllers\GroupController;
 use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\AdminController; // Add of class AdminController
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\EmailController;
+
 
 // Redirect the root path to /dashboard
 Route::redirect('/', 'dashboard');
@@ -58,6 +60,7 @@ Route::middleware('auth')->group(function () {
         Route::get('/students/{students}', [StudentController::class, 'getForm'])->name('students.update'); // Route to recup the form's infos
         Route::delete('/students/{id}', [StudentController::class, 'delete'])->name('students.delete');
 
+        Route::get('send-mail' , [EmailController::class, 'SendPassword'])->name('send-mail');
     });
 
 });

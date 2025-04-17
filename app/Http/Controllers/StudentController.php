@@ -3,12 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cohort;
+use App\Notifications\SendStudentPassword;
 use Couchbase\Group;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash; // Import the class to hash the password
 use function Laravel\Prompts\password;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 
 class StudentController extends Controller
 {
@@ -40,15 +42,16 @@ class StudentController extends Controller
             'last_name' => 'required|string',
             'email' => 'required|email|unique:users',
             'birth_date' => 'required|date',
-            'password' => 'required|min:6'
         ]);
+
+        $randomPassword = Str::random(8);
 
         $userId = DB::table('users')->insertGetId([
             'first_name' => $request->first_name,
             'last_name' => $request->last_name,
             'email' => $request->email,
             'birth_date' => $request->birth_date,
-            'password' => bcrypt($request->password),
+            'password' => Hash::make($randomPassword),
             'created_at' => now(),
             'updated_at' => now()
         ]);
@@ -61,7 +64,10 @@ class StudentController extends Controller
             'updated_at' => now()
         ]);
 
-        return redirect()->route('student.index')->with('success', 'Étudiant ajouté avec succès');
+        $user = User::find($userId);
+        $user->notify(new SendStudentPassword($randomPassword));
+
+        return redirect()->route('student.index')->with('success', 'Étudiant ajouté avec succès, un email a été envoyé avec son mot de passe.');
     }
 
     // Edit Student
