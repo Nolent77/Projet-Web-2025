@@ -54,13 +54,20 @@
                                             <td>{{ $student->first_name }}</td>
                                             <td>{{ \Carbon\Carbon::parse($student->birth_date)->format('d/m/Y') }}</td>
                                             <td>
-                                                <div class="flex items-center justify-between">
-                                                    <a href="#">
-                                                        <i class="text-success ki-filled ki-shield-tick"></i>
+                                                <div class="flex items-center gap-3 justify-center">
+                                                    <!-- Bouton Modifier -->
+                                                    <a href="{{ route('students.edit', $student->id) }}" class="text-blue-600 hover:text-blue-800" title="Modifier">
+                                                        <i class="ki-filled ki-pencil-square"></i>
                                                     </a>
-                                                    <a class="hover:text-primary cursor-pointer" href="#" data-modal-toggle="#student-modal">
-                                                        <i class="ki-filled ki-cursor"></i>
-                                                    </a>
+
+                                                    <!-- Bouton Supprimer -->
+                                                    <form action="{{ route('students.destroy', $student->id) }}" method="POST" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer cet étudiant ?')">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="submit" class="text-red-600 hover:text-red-800" title="Supprimer">
+                                                            <i class="ki-filled ki-trash"></i>
+                                                        </button>
+                                                    </form>
                                                 </div>
                                             </td>
                                         </tr>
