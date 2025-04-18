@@ -1,5 +1,6 @@
 import './bootstrap';
 import './studentForm'
+import './teacherForm'
 
 import Alpine from 'alpinejs';
 

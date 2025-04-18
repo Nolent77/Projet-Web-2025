@@ -6,9 +6,9 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RetroController;
 use App\Http\Controllers\StudentController;
+use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\KnowledgeController;
 use App\Http\Controllers\GroupController;
-use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\AdminController; // Add of class AdminController
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EmailController;
@@ -35,7 +35,7 @@ Route::middleware('auth')->group(function () {
         Route::get('/teachers', [TeacherController::class, 'index'])->name('teacher.index');
 
         // Students
-        Route::get('students', [StudentController::class, 'index'])->name('student.index');
+        Route::get('students', [TeacherController::class, 'index'])->name('student.index');
 
         // Knowledge
         Route::get('knowledge', [KnowledgeController::class, 'index'])->name('knowledge.index');
@@ -69,6 +69,15 @@ Route::middleware('auth')->group(function () {
         Route::get('cohorts/create', [CohortController::class, 'create'])->name('cohorts.create');
         Route::post('/cohorts', [CohortController::class, 'store'])->name('cohorts.store');
         Route::delete('/cohorts/{id}', [CohortController::class, 'delete'])->name('cohorts.delete');
+
+        //Teacher  Action
+        Route::get('/teachers', [TeacherController::class, 'index'])->name('teachers.index');
+        Route::get('/teachers/create', [TeacherController::class, 'create'])->name('teachers.create');
+        Route::post('/teachers', [TeacherController::class, 'store'])->name('teachers.store');
+        Route::get('/teachers/{id}/edit', [TeacherController::class, 'edit'])->name('teachers.edit');
+        Route::put('form/teachers/{teachers}', [TeacherController::class, 'update'])->name('form.teachers.update'); // Route to the form
+        Route::get('/teachers/{teachers}', [TeacherController::class, 'getForm'])->name('teachers.update'); // Route to recup the form's infos
+        Route::delete('/teachers/{id}', [TeacherController::class, 'delete'])->name('teachers.delete');
     });
 
 });

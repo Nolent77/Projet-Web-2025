@@ -41,37 +41,31 @@
                                     </tr>
                                     </thead>
                                     <tbody>
+                                    @foreach ($teachers as $teacher)
                                         <tr>
-                                            <td>Doe</td>
-                                            <td>John</td>
+                                            <td>{{ $teacher->last_name }}</td>
+                                            <td>{{ $teacher->first_name }}</td>
+                                            <td>{{ \Carbon\Carbon::parse($teacher->birth_date)->format('d/m/Y') }}</td>
                                             <td>
-                                                <div class="flex items-center justify-between">
-                                                    <a href="#">
-                                                        <i class="text-success ki-filled ki-shield-tick"></i>
+                                                <div class="flex items-center gap-3 justify-center">
+                                                    <!-- Modify button -->
+                                                    <a class="open-teacher-modal hover:text-primary cursor-pointer" href="#"
+                                                       data-modal-toggle="#teacher-modal" data-route="{{ route('teachers.update', $teacher->id) }}">
+                                                        <i class="ki-filled ki-cursor"></i>
                                                     </a>
 
-                                                    <a class="hover:text-primary cursor-pointer" href="#"
-                                                       data-modal-toggle="#student-modal">
-                                                        <i class="ki-filled ki-cursor"></i>
-                                                    </a>
+                                                    <!-- Delete button -->
+                                                    <form action="{{ route('teachers.delete', $teacher->id) }}" method="POST" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer ce prof ?')">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="submit" class="text-red-600 hover:text-red-800" title="Supprimer">
+                                                            <i class="ki-filled ki-trash"></i>
+                                                        </button>
+                                                    </form>
                                                 </div>
                                             </td>
                                         </tr>
-                                        <tr>
-                                            <td>Joe</td>
-                                            <td>Dohn</td>
-                                            <td>
-                                                <div class="flex items-center justify-between">
-                                                    <a href="#">
-                                                        <i class="text-danger ki-filled ki-shield-cross"></i>
-                                                    </a>
-                                                    <a class="hover:text-primary cursor-pointer" href="#"
-                                                       data-modal-toggle="#student-modal">
-                                                        <i class="ki-filled ki-cursor"></i>
-                                                    </a>
-                                                </div>
-                                            </td>
-                                        </tr>
+                                    @endforeach
                                     </tbody>
                                 </table>
                             </div>
@@ -102,25 +96,25 @@
                     <div class="card h-full">
                         <div class="card-header">
                             <h3 class="card-title">
-                                Ajouter une promotion
+                                Créer un Prof
                             </h3>
                         </div>
                         <div class="card-body flex flex-col gap-5">
-                            <x-forms.input name="name" :label="__('Nom')" />
+                            <form id="create-teacher-form" method="POST" action="{{ route('teachers.store') }}">
+                                @csrf
 
+                                <x-forms.input name="first_name" :label="__('Prénom')" required />
+                                <x-forms.input name="last_name" :label="__('Nom')" required />
+                                <x-forms.input type="date" name="birth_date" :label="__('Date de naissance')" required />
+                                <x-forms.input type="email" name="email" :label="__('Email')" required />
+                                <x-forms.input type="password" name="password" :label="__('Mot de passe')" required />
 
-                            <x-forms.input name="description" :label="__('Description')" />
+                                <x-forms.primary-button type="submit">
+                                    {{ __('Valider') }}
+                                </x-forms.primary-button>
 
-
-                            <x-forms.input type="date" name="year" :label="__('Début de l\'année')" placeholder="" />
-
-
-                            <x-forms.input type="date" name="year" :label="__('Fin de l\'année')" placeholder="" />
-
-
-                            <x-forms.primary-button>
-                                {{ __('Valider') }}
-                            </x-forms.primary-button>
+                                <p id="success-message" class="text-green-600 mt-3 hidden">Étudiant créé avec succès !</p>
+                            </form>
                         </div>
                     </div>
                 </div>
