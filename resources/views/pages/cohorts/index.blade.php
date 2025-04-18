@@ -43,21 +43,13 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr>
-                                        <td>
-                                            <div class="flex flex-col gap-2">
-                                                <a class="leading-none font-medium text-sm text-gray-900 hover:text-primary"
-                                                   href="{{ route('cohort.show', 1) }}">
-                                                    Promotion B1
-                                                </a>
-                                                <span class="text-2sm text-gray-700 font-normal leading-3">
-                                                   Cergy
-                                               </span>
-                                            </div>
-                                        </td>
-                                        <td>2024-2025</td>
-                                        <td>34</td>
-                                    </tr>
+                                        @foreach ($cohorts as $cohort)
+                                            <tr>
+                                                <td>{{ $cohort->name }}</td>
+                                                <td>{{ $cohort->start_date }}</td>
+
+                                            </tr>
+                                        @endforeach
                                     </tbody>
                                 </table>
                             </div>
@@ -85,21 +77,29 @@
                     </h3>
                 </div>
                 <div class="card-body flex flex-col gap-5">
-                    <x-forms.input name="name" :label="__('Nom')" />
+                    <form id="create-student-form" method="POST" action="{{ route('cohorts.store') }}">
+                        @csrf
+                        <x-forms.input name="name" :label="__('Nom')" />
 
 
-                    <x-forms.input name="description" :label="__('Description')" />
+                        <x-forms.input name="description" :label="__('Description')" />
 
 
-                    <x-forms.input type="date" name="year" :label="__('Début de l\'année')" placeholder="" />
+                        <x-forms.input type="date" name="start_date" :label="__('Début de l\'année')" placeholder="" />
 
 
-                    <x-forms.input type="date" name="year" :label="__('Fin de l\'année')" placeholder="" />
+                        <x-forms.input type="date" name="end_date" :label="__('Fin de l\'année')" placeholder="" />
 
+                        <x-forms.dropdown name="school_id" :label="__('Schools')">
+                            @foreach($schools as $school)
+                                <option value="{{ $school->id }}">{{ $school->name }}</option>
+                            @endforeach
+                        </x-forms.dropdown>
 
-                    <x-forms.primary-button>
-                        {{ __('Valider') }}
-                    </x-forms.primary-button>
+                        <x-forms.primary-button type="submit">
+                            {{ __('Valider') }}
+                        </x-forms.primary-button>
+                    </form>
                 </div>
             </div>
         </div>

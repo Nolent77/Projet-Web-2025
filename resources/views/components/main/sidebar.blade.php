@@ -52,7 +52,7 @@
                     <div class="menu-accordion gap-px ps-7">
                         <div class="menu-item">
                             <a class="menu-link py-2 px-2.5 rounded-md border border-transparent menu-item-active:border-gray-200 menu-item-active:bg-light menu-link-hover:bg-light menu-link-hover:border-gray-200"
-                               href="{{ route('cohort.index') }}">
+                               href="{{ route('cohorts.index') }}">
                                 <span class="menu-title text-2sm text-gray-800 menu-item-active:text-gray-900 menu-link-hover:text-gray-900">
                                     Toutes les promotions
                                 </span>

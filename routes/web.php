@@ -52,6 +52,7 @@ Route::middleware('auth')->group(function () {
         // Admin
         Route::get('admin/dashboard', [AdminController::class, 'index'])->name('admin.index');
 
+        // Student Action
         Route::get('/students', [StudentController::class, 'index'])->name('student.index');
         Route::get('/students/create', [StudentController::class, 'create'])->name('students.create');
         Route::post('/students', [StudentController::class, 'store'])->name('students.store');
@@ -60,7 +61,13 @@ Route::middleware('auth')->group(function () {
         Route::get('/students/{students}', [StudentController::class, 'getForm'])->name('students.update'); // Route to recup the form's infos
         Route::delete('/students/{id}', [StudentController::class, 'delete'])->name('students.delete');
 
+        //Mail
         Route::get('send-mail' , [EmailController::class, 'SendPassword'])->name('send-mail');
+
+        // Cohort Action
+        Route::get('/cohorts', [CohortController::class, 'index'])->name('cohorts.index');
+        Route::get('cohorts/create', [CohortController::class, 'create'])->name('cohorts.create');
+        Route::post('/cohorts', [CohortController::class, 'store'])->name('cohorts.store');
     });
 
 });
