@@ -36,7 +36,13 @@
                                         </th>
                                         <th class="min-w-[135px]">
                                            <span class="sort">
-                                               <span class="sort-label">Etudiants</span>
+                                               <span class="sort-label">Ecole</span>
+                                               <span class="sort-icon"></span>
+                                           </span>
+                                        </th>
+                                        <th class="min-w-[135px]">
+                                           <span class="sort">
+                                               <span class="sort-label">Action</span>
                                                <span class="sort-icon"></span>
                                            </span>
                                         </th>
@@ -47,7 +53,17 @@
                                             <tr>
                                                 <td>{{ $cohort->name }}</td>
                                                 <td>{{ $cohort->start_date }}</td>
-
+                                                <td>{{$cohort->school->name}}</td>
+                                                <td>
+                                                    <!-- Delete button -->
+                                                    <form action="{{ route('cohorts.delete', $cohort->id) }}" method="POST" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer cet étudiant ?')">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="submit" class="text-red-600 hover:text-red-800" title="Supprimer">
+                                                            <i class="ki-filled ki-trash"></i>
+                                                        </button>
+                                                    </form>
+                                                </td>
                                             </tr>
                                         @endforeach
                                     </tbody>

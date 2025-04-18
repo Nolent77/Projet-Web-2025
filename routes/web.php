@@ -68,6 +68,7 @@ Route::middleware('auth')->group(function () {
         Route::get('/cohorts', [CohortController::class, 'index'])->name('cohorts.index');
         Route::get('cohorts/create', [CohortController::class, 'create'])->name('cohorts.create');
         Route::post('/cohorts', [CohortController::class, 'store'])->name('cohorts.store');
+        Route::delete('/cohorts/{id}', [CohortController::class, 'delete'])->name('cohorts.delete');
     });
 
 });

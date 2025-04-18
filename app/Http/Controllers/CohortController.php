@@ -8,6 +8,7 @@ use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Foundation\Application;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 
 class CohortController extends Controller
@@ -85,6 +86,14 @@ class CohortController extends Controller
         ]);
 
         return redirect()->route('cohorts.index')->with('success', 'Étudiant ajouté avec succès, un email a été envoyé avec son mot de passe.'); //Redirection with success message
+    }
 
+    public function delete($id)
+    {
+        //  Removes the student from both users and the pivot table users_schools
+
+        DB::table('cohorts')->where('id', $id)->delete();
+
+        return redirect()->route('cohorts.index')->with('success', 'Étudiant supprimé');
     }
 }
