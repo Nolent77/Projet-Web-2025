@@ -85,6 +85,8 @@ class User extends Authenticatable
             ->first();
     }
 
+    // This function retrieves the users associated with a specific role
+    // by joining the `users` table and the `users_schools` table on the user ID
     public static function getUsersByRole($role){
         return self::join('users_schools', 'users.id' ,'=','users_schools.user_id' )
         ->where('users_schools.role', '=', $role)
@@ -92,6 +94,8 @@ class User extends Authenticatable
         ->get();
     }
 
+    // This function defines a many-to-many relationship between the user and the cohorts
+    // via the pivot table `cohort_user`
     public function cohorts(){
         return $this->belongsToMany(Cohort::class, 'cohort_user')
             ->withTimestamps();

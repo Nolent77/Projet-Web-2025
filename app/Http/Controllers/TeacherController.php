@@ -15,7 +15,7 @@ class TeacherController extends Controller
 
     public function index()
     {
-        // We retrieve all users with the student role via a join on the users_schools table
+        // We retrieve all users with the teacher role via a join on the users_schools table
 
         $teachers = DB::table('users')
             ->join('users_schools', 'users.id', '=', 'users_schools.user_id')
@@ -23,19 +23,19 @@ class TeacherController extends Controller
             ->select('users.*')
             ->get();
 
-        // The list of students is sent to the
+        // The list of teacher is sent to the
 
         return view('pages.teachers.index', compact('teachers'));
     }
 
     public function create(){
 
-        // Displays the student creation form
+        // Displays the teacher creation form
 
         return view('pages.teachers.create');
     }
 
-    // Retrieves the data from the form and creates the student
+    // Retrieves the data from the form and creates the teacher
     public function store(Request $request)
     {
 
@@ -59,7 +59,6 @@ class TeacherController extends Controller
             'password' => Hash::make($randomPassword), // Encrypts the password before storing it
         ]);
 
-        // We link the user to a school --> The student is linked to the school with ID 1 and has the student role
 
         UserSchool::create([
             'user_id' => $user->id,
@@ -72,9 +71,9 @@ class TeacherController extends Controller
 
     public function edit($id){
 
-        // Retrieves the student ID and returns the pre-filled form
+        // Retrieves the teacher ID and returns the pre-filled form
 
-        $teachers = User::findOrFail($id); // Return a 404 error if the student doesn't exist with findOrFail methode
+        $teachers = User::findOrFail($id); // Return a 404 error if the teacher doesn't exist with findOrFail methode
         return view('pages.teachers.edit', compact('teachers'));
     }
 
@@ -89,7 +88,7 @@ class TeacherController extends Controller
             'email' => 'required|email|max:255',
         ]);
 
-        $user = User::findOrFail($id); // Return a 404 error if the student doesn't exist with findOrFail methode
+        $user = User::findOrFail($id); // Return a 404 error if the teacher doesn't exist with findOrFail methode
         $user->update($validated); // The user is updated with the data validated in the database
 
         return redirect()->back()->with('success', 'Prof mis à jour');
@@ -117,7 +116,7 @@ class TeacherController extends Controller
 
     public function delete($id)
     {
-        //  Removes the student from both users and the pivot table users_schools
+        //  Removes the teacher from both users and the pivot table users_schools
 
         DB::table('users')->where('id', $id)->delete();
         DB::table('users_schools')->where('user_id', $id)->delete();
