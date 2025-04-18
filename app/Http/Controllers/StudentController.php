@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\UserSchool;
 use App\Notifications\SendStudentPassword;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash; // Import the class to hash the password
@@ -27,14 +28,12 @@ class StudentController extends Controller
         return view('pages.students.index', compact('students'));
     }
 
-
     public function create(){
 
     // Displays the student creation form
 
     return view('pages.students.create');
     }
-
 
     // Retrieves the data from the form and creates the student
     public function store(Request $request)
@@ -52,33 +51,26 @@ class StudentController extends Controller
         $randomPassword = Str::random(8); // Generates a random 8-character password
 
         // Inserts the student in the users table and retrieves the inserted ID
-
-        $userId = DB::table('users')->insertGetId([
+        $user = User::create([
             'first_name' => $request->first_name,
             'last_name' => $request->last_name,
             'email' => $request->email,
             'birth_date' => $request->birth_date,
             'password' => Hash::make($randomPassword), // Encrypts the password before storing it
-            'created_at' => now(),
-            'updated_at' => now()
         ]);
 
         // We link the user to a school --> The student is linked to the school with ID 1 and has the student role
 
-        DB::table('users_schools')->insert([
-            'user_id' => $userId,
+        UserSchool::create([
+            'user_id' => $user->id,
             'school_id' => 1,
-            'role' => 'student',
-            'created_at' => now(),
-            'updated_at' => now()
+            'role' => 'student'
         ]);
 
-        $user = User::find($userId); //  Retrieves the user added to the database from its ID
         $user->notify(new SendStudentPassword($randomPassword)); // The password is sent to the student by email via notification
 
         return redirect()->route('student.index')->with('success', 'Étudiant ajouté avec succès, un email a été envoyé avec son mot de passe.'); //Redirection with success message
     }
-
 
     public function edit($id){
 
@@ -87,8 +79,6 @@ class StudentController extends Controller
         $student = User::findOrFail($id); // Return a 404 error if the student doesn't exist with findOrFail methode
         return view('pages.students.edit', compact('student'));
     }
-
-
 
     public function update(Request $request, $id)
     {
@@ -106,7 +96,6 @@ class StudentController extends Controller
 
         return redirect()->back()->with('success', 'Étudiant mis à jour');
     }
-
 
     public function getForm(Request $request)
     {
@@ -127,8 +116,6 @@ class StudentController extends Controller
             'data' => $validatedData
         ]);
     }
-
-
 
     public function delete($id)
     {
