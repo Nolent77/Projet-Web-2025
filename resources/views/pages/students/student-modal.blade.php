@@ -2,6 +2,7 @@
     'id'    => 'student-modal',
     'title'  => 'Informations étudiant',] )
 
+
 @section('modal-content')
     <form id="create-student-form" method="POST" action="{{ route('form.students.update', ['students'=> $student -> id])}}">
         @csrf

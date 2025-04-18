@@ -9,7 +9,7 @@
 
     <!-- begin: grid -->
     <div class="grid lg:grid-cols-3 gap-5 lg:gap-7.5 items-stretch">
-        <!-- Liste des étudiants -->
+        <!-- List of students -->
         <div class="lg:col-span-2">
             <div class="grid">
                 <div class="card card-grid h-full min-w-full">
@@ -55,13 +55,13 @@
                                             <td>{{ \Carbon\Carbon::parse($student->birth_date)->format('d/m/Y') }}</td>
                                             <td>
                                                 <div class="flex items-center gap-3 justify-center">
-                                                    <!-- Bouton Modifier -->
+                                                    <!-- Modify button -->
                                                     <a class="open-student-modal hover:text-primary cursor-pointer" href="#"
                                                        data-modal-toggle="#student-modal" data-route="{{ route('students.update', $student->id) }}">
                                                         <i class="ki-filled ki-cursor"></i>
                                                     </a>
 
-                                                    <!-- Bouton Supprimer -->
+                                                    <!-- Delete button -->
                                                     <form action="{{ route('students.delete', $student->id) }}" method="POST" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer cet étudiant ?')">
                                                         @csrf
                                                         @method('DELETE')
@@ -93,7 +93,7 @@
             </div>
         </div>
 
-        <!-- Formulaire de création -->
+        <!-- Creation form -->
         <div class="lg:col-span-1">
             <div class="card h-full">
                 <div class="card-header">

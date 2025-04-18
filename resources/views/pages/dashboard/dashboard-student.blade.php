@@ -7,6 +7,7 @@
         </h1>
     </x-slot>
 
+
     <!-- begin: grid -->
     <div class="grid lg:grid-cols-3 gap-5 lg:gap-7.5 items-stretch">
         <div class="lg:col-span-2">

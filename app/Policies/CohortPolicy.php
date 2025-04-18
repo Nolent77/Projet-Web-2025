@@ -4,7 +4,6 @@ namespace App\Policies;
 
 use App\Models\Cohort;
 use App\Models\User;
-use Illuminate\Auth\Access\Response;
 
 class CohortPolicy
 {
@@ -13,7 +12,7 @@ class CohortPolicy
      */
     public function viewAny(User $user): bool
     {
-        return in_array($user->school()->pivot->role, ['admin', 'teacher']); // admin and teacher can have promotion button in their sidebar
+        return in_array($user->school()->pivot->role, ['admin', 'teacher']); // Admin and teacher can have promotion button in their sidebar
     }
 
     /**

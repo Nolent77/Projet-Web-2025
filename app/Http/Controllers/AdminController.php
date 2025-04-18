@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use Illuminate\Contracts\View\View; // to detect the vu (precise of type)
+use Illuminate\Contracts\View\View; // To detect the vu (precise of type)
 
 class AdminController extends Controller
 {
-    public function index(): View // to detect the vu (precise of type)
+    public function index(): View // To detect the vu (precise of type)
     {
         return view('admin.dashboard');
     }

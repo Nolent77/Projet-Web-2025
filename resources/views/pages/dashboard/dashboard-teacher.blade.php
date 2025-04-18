@@ -9,12 +9,12 @@
 
     <div class="shadow-lg border rounded-md p-4">
 
-        <!-- Titre de la page -->
+        <!-- Page title -->
         <h1 class="text-2xl font-semibold text-gray-800 mb-6">Dashboard</h1>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6" >
 
-            <!-- Promotions -->
+            <!-- Cohorts -->
             <div class="bg-white p-6 rounded-lg shadow-md flex flex-col items-center">
                 <h2 class="text-lg font-medium text-gray-700 mt-12">Promotions</h2>
                 <p class="text-3xl font-bold text-blue-500">{{$cohorts->count()}}</p>
@@ -23,7 +23,7 @@
                 </a>
             </div>
 
-            <!-- Groupes -->
+            <!-- Groups -->
             <div class="bg-white p-6 rounded-lg shadow-md flex flex-col items-center">
                 <h2 class="text-lg font-medium text-gray-700">Groupes</h2>
                 <p class="text-3xl font-bold text-red-500">1</p>
