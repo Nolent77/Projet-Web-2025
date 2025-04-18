@@ -98,3 +98,23 @@ npm run dev
 - 🧠 Génération automatique de QCM par langage sélectionné
 - ✅ Système de Kanban pour les rétrospectives
 - 📈 Statistiques d’usage et suivi pédagogique
+
+## Le Travail réalisé 
+
+Story 1 → Fait ✅
+
+Story 2 → Fait, mais il faut remplir directement les informations dans la base de données en SQL, dans la table pivot cohort_user, afin que :
+
+le teacher puisse voir uniquement les stories qui lui sont affiliées,
+
+et que l’admin puisse voir toutes les promotions.
+
+Story 3 → Fait, mais l’email ne s’envoie pas sur Gmail à cause d’un problème de certificat SSL.
+J’ai donc utilisé le mode LOG pour le moment.
+
+Story 4 → Partiellement faite : on peut uniquement ajouter et supprimer une promotion.
+Il n’est pas encore possible de modifier ni de consulter les promotions affiliées.
+
+Story 5 → Fait entièrement ✅
+
+Story 6 → Pas faite ❌
